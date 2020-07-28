@@ -16,37 +16,29 @@ class Song
     song
   end
   
-  def self.new_by_name(name)
-    song = self.new
-    song.name = name
-    song
+  def self.new_by_name(song_name)
+    new_song = self.new
+    new_song.name = song_name
+    new_song
   end
   
-  def create_by_name(name)
-    song = self.new
-    song.name = name
-    @@all << song
-    song
+  def self.create_by_name(song_name)
+    new_song = self.new
+    new_song.name = song_name
+    @@all << new_song
+    new_song
   end
   
-  def self.find_by_name(string_name_of_the_song)
-    self.all.detect {|i| i.name == string_name_of_the_song}
+  def self.find_by_name(song_name)
+    self.all.detect { |song| song.name == song_name}
   end
   
-  def self.find_or_create_by_name(find_this_song)
-    did_i_find_it == self.all.detect{|x| x.name == find_this_song}
-    if did_i_find_it == nil
-      s = self.new
-      s.name = find_this_song
-      s.save
-      s
-    else
-      did_i_find_it
-    end
+  def self.find_or_create-by_name(song_name)
+    self.find_by_name(song_name) || self.create_by_name(song_name)
   end
   
-  def self.alphabetical()
-    @@all.sort_by{|x| x.name}
+  def self.alphabetical
+    @@all.sort_by! { 
   end
   
   def self.new_from_filename(name)
